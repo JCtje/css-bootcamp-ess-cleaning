@@ -22,6 +22,39 @@ ess.data$eduyrs_clean[ess.data$eduyrs_clean > 70] <- NA
 table (ess.data$eduyrs_clean)
 range(ess.data$eduyrs_clean, na.rm = TRUE)
 #Part II: Political variables
+css.data<-read.csv("ess_messy_extract.csv")
+View(css.data)
+
+library(dplyr)
+library(forcats)
+class(css.data$prtclgfr)
+
+css.data <- css.data %>%
+ mutate(
+    prtclgfr = case_when(
+      prtclgfr == 1  ~ "PCF (Parti Communiste Français)",
+      prtclgfr == 2  ~ "FI (La France Insoumise)",
+      prtclgfr == 3  ~ "PS (Parti Socialiste)",
+      prtclgfr == 4  ~ "EELV (Europe Écologie Les Verts)",
+      prtclgfr == 5  ~ "Renaissance (ex La République en Marche !)",
+      prtclgfr == 6  ~ "Horizons",
+      prtclgfr == 7  ~ "MODEM (Mouvement Démocrate)",
+      prtclgfr == 8  ~ "LR (Les Républicains)",
+      prtclgfr == 9  ~ "Le Rassemblement National (RN, ex Front National)",
+      prtclgfr == 10 ~ "Reconquête !",
+      prtclgfr == 31 ~ "Autre",
+      prtclgfr == 66 ~ "Not applicable",
+      prtclgfr == 77 ~ "Refusal",
+      prtclgfr == 88 ~ "Don't know",
+      prtclgfr == 99 ~ "No answer",
+      TRUE        ~ as.character(prtclgfr) # Sécurité pour conserver les données manquantes ou hors liste
+    ),
+    # Conversion finale en facteur pour les analyses statistiques
+    prtclgfr = as.factor(prtclgfr) 
+  )
+
+
+table(css.data$prtclgfr)
 
 #Part III: Trust variables
 library(questionr)

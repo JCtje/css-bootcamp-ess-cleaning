@@ -29,7 +29,7 @@ library(dplyr)
 library(forcats)
 class(ess.data$prtclgfr)
 
-css.data <- css.data %>%
+ess.data <- ess.data %>%
  mutate(
     prtclgfr = case_when(
       prtclgfr == 1  ~ "PCF (Parti Communiste Français)",

@@ -22,12 +22,12 @@ ess.data$eduyrs_clean[ess.data$eduyrs_clean > 70] <- NA
 table (ess.data$eduyrs_clean)
 range(ess.data$eduyrs_clean, na.rm = TRUE)
 #Part II: Political variables
-css.data<-read.csv("ess_messy_extract.csv")
-View(css.data)
+
+View(ess.data)
 
 library(dplyr)
 library(forcats)
-class(css.data$prtclgfr)
+class(ess.data$prtclgfr)
 
 css.data <- css.data %>%
  mutate(
@@ -54,7 +54,7 @@ css.data <- css.data %>%
   )
 
 
-table(css.data$prtclgfr)
+table(ess.data$prtclgfr)
 
 #Part III: Trust variables
 library(questionr)
